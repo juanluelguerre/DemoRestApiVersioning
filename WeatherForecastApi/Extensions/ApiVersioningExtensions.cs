@@ -10,25 +10,25 @@ public static class ApiVersioningExtensions
 {
     public static IServiceCollection AddCustomApiVersioning(this IServiceCollection services)
     {
-        services.AddApiVersioning(o =>
+        services.AddApiVersioning(config =>
         {
-            o.AssumeDefaultVersionWhenUnspecified = true;
-            o.DefaultApiVersion = new ApiVersion(1, 0);
+            config.AssumeDefaultVersionWhenUnspecified = true;
+            config.DefaultApiVersion = new ApiVersion(1, 0);
             // allows API return versions in the response header (api-supported-versions).
-            o.ReportApiVersions = true;
+            config.ReportApiVersions = true;
         });
 
-        services.AddVersionedApiExplorer(o =>
+        services.AddVersionedApiExplorer(config =>
         {
-            o.GroupNameFormat = "'v'VVV";
-            o.SubstituteApiVersionInUrl = true;
+            config.GroupNameFormat = "'v'VVV";
+            config.SubstituteApiVersionInUrl = true;
         });
 
-        services.AddSwaggerGen(o =>
+        services.AddSwaggerGen(config =>
         {
-            //o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
-            //    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"), true);
-            o.OperationFilter<SwaggerDefaultValuesFilter>();
+            config.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+                $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"), true);
+            config.OperationFilter<SwaggerDefaultValuesFilter>();
         });
 
         services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
