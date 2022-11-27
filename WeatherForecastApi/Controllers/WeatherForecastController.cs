@@ -5,9 +5,11 @@ namespace WeatherForecastApi.Controllers;
 /// <summary>
 /// Endpoints used for managing Weather Forecasts
 /// </summary>
+// [ApiVersion("2.0")]
+// [ApiVersion("1.1")]
+// [ApiVersion("1.1-RC1")]
 [ApiVersion("1.0")]
-[Route("v{version:apiVersion}/brands")]
-//[Route("[controller]")]
+[Route("v{version:apiVersion}/[controller]")]
 [Produces("application/json")]
 [ApiController]
 public class WeatherForecastController : ControllerBase

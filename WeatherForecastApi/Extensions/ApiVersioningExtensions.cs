@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using WeatherForecastApi.Filters;
 
 namespace WeatherForecastApi.Extensions;
@@ -14,10 +14,16 @@ public static class ApiVersioningExtensions
         {
             config.AssumeDefaultVersionWhenUnspecified = true;
             config.DefaultApiVersion = new ApiVersion(1, 0);
-            // allows API return versions in the response header (api-supported-versions).
+            // Allows API return versions in the response header (api-supported-versions).
             config.ReportApiVersions = true;
+            // Allows to choose whether they would like to place the parameter in the URL or in the request header
+            //config.ApiVersionReader = ApiVersionReader.Combine(
+            //    new UrlSegmentApiVersionReader(),
+            //    new HeaderApiVersionReader("x-api-version"),
+            //    new MediaTypeApiVersionReader("x-api-version"));
         });
 
+        // Allows to discover versions
         services.AddVersionedApiExplorer(config =>
         {
             config.GroupNameFormat = "'v'VVV";

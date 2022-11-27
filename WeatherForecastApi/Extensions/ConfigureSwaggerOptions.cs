@@ -5,6 +5,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace WeatherForecastApi.Extensions;
 
+// Allows multi-version 
 public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
 {
     private readonly IApiVersionDescriptionProvider apiVersionDescriptionProvider;

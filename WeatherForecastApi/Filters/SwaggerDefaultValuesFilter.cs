@@ -22,7 +22,7 @@ public class SwaggerDefaultValuesFilter : IOperationFilter
         foreach (var parameter in operation.Parameters)
         {
             var description = apiDescription.ParameterDescriptions.First(p =>
-                p.Name.Equals(parameter.Name, System.StringComparison.CurrentCultureIgnoreCase));
+                p.Name.Equals(parameter.Name, StringComparison.CurrentCultureIgnoreCase));
 
             parameter.Description ??= description.ModelMetadata?.Description;
 
