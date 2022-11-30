@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Weather Forecast API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "myserver.com"
+    }
+  ],
+  "paths": {
+    "/v1/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "summary": "Get the Weather forecast",
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Returns the forecast for next 5 days",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DateOnly": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "day": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "dayOfYear": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "dayNumber": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DayOfWeek": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "description": "Temperature en Celsius",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "description": "Temperature in Fahrenheit",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "description": "Forecast summary",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Weather forecast detail"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "WeatherForecast",
+      "description": "Endpoints used for managing Weather Forecasts"
+    }
+  ]
+}

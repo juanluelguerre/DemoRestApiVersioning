@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "WeatherForecastApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "title": "Weather Forecast API",
     "version": "1.0"
   },
   "servers": [
@@ -10,15 +10,16 @@
     }
   ],
   "paths": {
-    "/WeatherForecast": {
+    "/v1/WeatherForecast": {
       "get": {
         "tags": [
           "WeatherForecast"
         ],
+        "summary": "Get the Weather forecast",
         "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Returns the forecast for next 5 days",
             "content": {
               "application/json": {
                 "schema": {
@@ -88,20 +89,30 @@
           },
           "temperatureC": {
             "type": "integer",
+            "description": "Temperature en Celsius",
             "format": "int32"
           },
           "temperatureF": {
             "type": "integer",
+            "description": "Temperature in Fahrenheit",
             "format": "int32",
             "readOnly": true
           },
           "summary": {
             "type": "string",
+            "description": "Forecast summary",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Weather forecast detail"
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "WeatherForecast",
+      "description": "Endpoints used for managing Weather Forecasts"
+    }
+  ]
 }
